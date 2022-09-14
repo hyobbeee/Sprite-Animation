@@ -1,8 +1,8 @@
 window.addEventListener('load', function () {
     const canvas = document.querySelector('#canvas1');
     const ctx = canvas.getContext('2d');
-    canvas.width = 500;
-    canvas.height = 500;
+    canvas.width = 2500;
+    canvas.height = 1400;
 
     class Mandrake {
         constructor(canvasWidth, canvasHeight) {
@@ -39,22 +39,52 @@ window.addEventListener('load', function () {
             // if (this.frameX < 17) this.frameX++
             // else this.frameX = 0;
 
-            this.frame = this.frame < this.maxFrame ? this.frame + 1 : this.minFrame;
+            this.frame = this.frame < this.maxFrame ? this.frame + 1 : this.minFrame; // ternary operator
             /* if (this.frame < this.maxFrame) this.frame++;
             else this.frame = this.minFrame; */
 
-            this.frameX = this.frame % 18; // 각행의 수평 프레임 수로 나눔
+            this.frameX = this.frame % 18; // 각행의 수평 프레임 수로 나눠 나머지를 반환
             this.frameY = Math.floor(this.frame / 18); // Math.floor(내림), round(반올림), ceil(올림)
+        }
+        setAnimation(newMinFrame, newMaxFrame) {
+            this.minFrame = newMinFrame;
+            this.maxFrame = newMaxFrame;
+            this.frame = this.minFrame;
         }
     }
 
     const mandrake = new Mandrake(canvas.width, canvas.height);
 
     function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);  //canvas의 뿌려진 부분 초기화  
         mandrake.draw(ctx);
         mandrake.update();
         requestAnimationFrame(animate);
     }
     animate();
+
+    const all = document.querySelector('#all')
+    all.addEventListener('click', function () {
+        mandrake.setAnimation(0, 355);
+    });
+
+    const grow = document.querySelector('#grow')
+    grow.addEventListener('click', function () {
+        mandrake.setAnimation(0, 75);
+    });
+
+    const wink = document.querySelector('#wink')
+    wink.addEventListener('click', function () {
+        mandrake.setAnimation(76, 112);
+    });
+
+    const float = document.querySelector('#float')
+    float.addEventListener('click', function () {
+        mandrake.setAnimation(113, 262);
+    });
+
+    const hide = document.querySelector('#hide')
+    hide.addEventListener('click', function () {
+        mandrake.setAnimation(263, 355);
+    });
 })
