@@ -38,13 +38,12 @@ font-size: 60px;
 }
 
 #canvas1{
-    background: blue;
     box-shadow: inset 5px 5px 5px black;
     border: 1px solid black;
     background: url(/mushroom_background.png)no-repeat center / cover;
 }
 
-label + input:checked{
-    display: none;
+input:checked > label{
+    background-color: red;
 }
 

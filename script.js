@@ -9,9 +9,9 @@ window.addEventListener('load', function () {
             this.canvasWidth = canvasWidth;
             this.canvasHeight = canvasHeight;
             this.image = document.querySelector('#mandrake');
-            this.spriteWitdth = 256;
+            this.spriteWidth = 256;
             this.spriteHeight = 256;
-            this.width = this.spriteWitdth;
+            this.width = this.spriteWidth;
             this.height = this.spriteHeight;
             this.scale = 2;
             this.x = this.canvasWidth / 2 - this.width * this.scale / 2;
@@ -25,9 +25,9 @@ window.addEventListener('load', function () {
         draw(context) {
             context.drawImage(
                 this.image,
-                this.frameX * this.spriteWitdth,
+                this.frameX * this.spriteWidth,
                 this.frameY * this.spriteHeight,
-                this.spriteWitdth,
+                this.spriteWidth,
                 this.spriteHeight,
                 this.x,
                 this.y,
@@ -35,11 +35,12 @@ window.addEventListener('load', function () {
                 this.height * this.scale,
             );
         }
+
         update() {
             // if (this.frameX < 17) this.frameX++
             // else this.frameX = 0;
 
-            this.frame = this.frame < this.maxFrame ? this.frame + 1 : this.minFrame; // ternary operator
+            this.frame = this.frame < this.maxFrame ? this.frame + 1 : this.minFrame;
             /* if (this.frame < this.maxFrame) this.frame++;
             else this.frame = this.minFrame; */
 
@@ -62,6 +63,8 @@ window.addEventListener('load', function () {
         requestAnimationFrame(animate);
     }
     animate();
+
+    //애니메이션 버튼
 
     const all = document.querySelector('#all')
     all.addEventListener('click', function () {
